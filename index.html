@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshMart - Grocery Delivery in Sri Lanka</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="advanced-navbar">
+            <div class="advanced-logo">
+                <img src="assets/images/logo.png" alt="FreshMart Logo" class="logo-img">
+            </div>
+            <ul class="advanced-nav-links">
+                <li><a href="index.html" class="advanced-nav-link">Home</a></li>
+                <li><a href="pages/products.html" class="advanced-nav-link">Products</a></li>
+                <li>
+                    <a href="pages/cart.html" class="advanced-nav-link advanced-cart-link">
+                        Cart (<span id="cart-count">0</span>)
+                    </a>
+                </li>
+                <li><a href="pages/about.html" class="advanced-nav-link">About</a></li>
+                <li id="auth-links">
+                    <a href="signin.html" class="advanced-nav-link">Sign In</a>
+                    <a href="signup.html" class="advanced-nav-link">Sign Up</a>
+                </li>
+                <li class="dropdown" id="user-dropdown">
+                    <span class="dropdown-toggle">Logged in as <span id="user-info"></span> ▼</span>
+                    <ul class="dropdown-menu" id="dropdown-menu">
+                        <li><a href="profile.html" id="profile-link" class="dropdown-item">Profile</a></li>
+                        <li><a href="#" id="logout" class="dropdown-item">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="advanced-menu-toggle">☰</div>
+        </nav>
+    </header>
+
+    <main class="content">
+        <div id="popup-ad" class="popup-ad">
+            <div class="popup-content">
+                <h3>Special Offer!</h3>
+                <p>Get 10% off your first order today! Use code: FRESH10</p>
+                <button id="close-popup">Close</button>
+            </div>
+        </div>
+
+        <section class="hero">
+            <img src="assets/images/banner.jpg" alt="Fresh Groceries" class="hero-img">
+            <div class="hero-content">
+                <h1>Fresh Groceries Delivered Across Sri Lanka</h1>
+                <p>Shop rice, spices, vegetables, and more. Fast delivery in Colombo and beyond!</p>
+                <a href="pages/products.html" class="cta-button">Shop Now</a>
+            </div>
+        </section>
+
+        <section class="featured-products">
+            <h2>Featured Products</h2>
+            <div class="product-grid">
+                <div class="product-card advanced-card" data-id="1" data-name="Red Rice" data-price="250">
+                    <img src="assets/images/products/red-rice.jpg" alt="Red Rice" class="product-img">
+                    <h3 class="product-title">Red Rice</h3>
+                    <p class="product-price">LKR 250/kg</p>
+                    <button class="add-to-cart advanced-button">Add to Cart</button>
+                </div>
+                <div class="product-card advanced-card" data-id="2" data-name="Mysore Dhal" data-price="180">
+                    <img src="assets/images/products/dhal.jpg" alt="Dhal" class="product-img">
+                    <h3 class="product-title">Mysore Dhal</h3>
+                    <p class="product-price">LKR 180/kg</p>
+                    <button class="add-to-cart advanced-button">Add to Cart</button>
+                </div>
+                <div class="product-card advanced-card" data-id="3" data-name="Fresh Coconut" data-price="80">
+                    <img src="assets/images/products/coconut.jpg" alt="Coconut" class="product-img">
+                    <h3 class="product-title">Fresh Coconut</h3>
+                    <p class="product-price">LKR 80/unit</p>
+                    <button class="add-to-cart advanced-button">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="advanced-footer">
+        <div class="brand-info">
+            <h3>FreshMart</h3>
+            <p>Fresh groceries delivered across Sri Lanka with fast service.</p>
+            <p><i class="fas fa-phone"></i> +94 112 345 678</p>
+            <p><i class="fas fa-envelope"></i> <a href="mailto:support@freshmart.lk">support@freshmart.lk</a></p>
+            <p><i class="fas fa-dove"></i> Drone Delivery Available</p>
+        </div>
+        <div class="quick-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="pages/products.html">Products</a></li>
+                <li><a href="pages/cart.html">Cart</a></li>
+                <li><a href="pages/about.html">About</a></li>
+            </ul>
+        </div>
+        <div class="contact-form">
+            <h3>Contact Us</h3>
+            <form id="contact-form" action="https://formspree.io/f/xqaqjabd" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+        <div class="social-icons">
+            <a href="https://twitter.com/freshmartsl" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://facebook.com/freshmartsl" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/freshmartsl" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="copyright">
+            <p>© 2025 FreshMart. All rights reserved. Last updated: May 19, 2025, 09:26 PM +0530</p>
+        </div>
+    </footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

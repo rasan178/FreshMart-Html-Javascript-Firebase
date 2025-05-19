@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - FreshMart</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="advanced-navbar">
+            <div class="advanced-logo">
+                <img src="../assets/images/logo.png" alt="FreshMart Logo" class="logo-img">
+            </div>
+            <ul class="advanced-nav-links">
+                <li><a href="../index.html" class="advanced-nav-link">Home</a></li>
+                <li><a href="products.html" class="advanced-nav-link">Products</a></li>
+                <li>
+                    <a href="cart.html" class="advanced-nav-link advanced-cart-link">
+                        Cart (<span id="cart-count">0</span>)
+                    </a>
+                </li>
+                <li><a href="about.html" class="advanced-nav-link">About</a></li>
+                <li id="auth-links">
+                    <a href="../signin.html" class="advanced-nav-link">Sign In</a>
+                    <a href="../signup.html" class="advanced-nav-link">Sign Up</a>
+                </li>
+                <li class="dropdown" id="user-dropdown">
+                    <span class="dropdown-toggle">Logged in as <span id="user-info"></span> ▼</span>
+                    <ul class="dropdown-menu" id="dropdown-menu">
+                        <li><a href="../profile.html" id="profile-link" class="dropdown-item">Profile</a></li>
+                        <li><a href="#" id="logout" class="dropdown-item">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="advanced-menu-toggle">☰</div>
+        </nav>
+    </header>
+
+    <main class="content">
+        <section class="products">
+            <h2>All Products</h2>
+            <div class="filter-search">
+                <input type="text" id="search-bar" placeholder="Search products...">
+                <select id="category-filter">
+                    <option value="all">All Categories</option>
+                    <option value="grains">Grains</option>
+                    <option value="spices">Spices</option>
+                    <option value="fruits">Fruits</option>
+                    <option value="vegetables">Vegetables</option>
+                </select>
+            </div>
+            <div class="product-grid" id="product-grid">
+                <div class="product-card advanced-card" data-id="1" data-name="Red Rice" data-price="250" data-category="grains">
+                    <img src="../assets/images/products/red-rice.jpg" alt="Red Rice" class="product-img">
+                    <h3 class="product-title">Red Rice</h3>
+                    <p class="product-price">LKR 250/kg</p>
+                    <button class="add-to-cart advanced-button">Add to Cart</button>
+                </div>
+                <div class="product-card advanced-card" data-id="2" data-name="Mysore Dhal" data-price="180" data-category="grains">
+                    <img src="../assets/images/products/dhal.jpg" alt="Dhal" class="product-img">
+                    <h3 class="product-title">Mysore Dhal</h3>
+                    <p class="product-price">LKR 180/kg</p>
+                    <button class="add-to-cart advanced-button">Add to Cart</button>
+                </div>
+                <div class="product-card advanced-card" data-id="3" data-name="Fresh Coconut" data-price="80" data-category="fruits">
+                    <img src="../assets/images/products/coconut.jpg" alt="Coconut" class="product-img">
+                    <h3 class="product-title">Fresh Coconut</h3>
+                    <p class="product-price">LKR 80/unit</p>
+                    <button class="add-to-cart advanced-button">Add to Cart</button>
+                </div>
+                <div class="product-card advanced-card" data-id="4" data-name="Curry Powder" data-price="150" data-category="spices">
+                    <img src="../assets/images/products/curry-powder.jpg" alt="Curry Powder" class="product-img">
+                    <h3 class="product-title">Curry Powder</h3>
+                    <p class="product-price">LKR 150/100g</p>
+                    <button class="add-to-cart advanced-button">Add to Cart</button>
+                </div>
+                <div class="product-card advanced-card" data-id="5" data-name="Tomatoes" data-price="200" data-category="vegetables">
+                    <img src="../assets/images/products/tomato.jpg" alt="Tomatoes" class="product-img">
+                    <h3 class="product-title">Tomatoes</h3>
+                    <p class="product-price">LKR 200/kg</p>
+                    <button class="add-to-cart advanced-button">Add to Cart</button>
+                </div>
+                <div class="product-card advanced-card" data-id="6" data-name="Green Beans" data-price="150" data-category="vegetables">
+                    <img src="../assets/images/products/green-beans.jpg" alt="Green Beans" class="product-img">
+                    <h3 class="product-title">Green Beans</h3>
+                    <p class="product-price">LKR 150/kg</p>
+                    <button class="add-to-cart advanced-button">Add to Cart</button>
+                </div>
+                <div class="product-card advanced-card" data-id="7" data-name="Mung Beans" data-price="220" data-category="grains">
+                    <img src="../assets/images/products/mung-beans.jpg" alt="Mung Beans" class="product-img">
+                    <h3 class="product-title">Mung Beans</h3>
+                    <p class="product-price">LKR 220/kg</p>
+                    <button class="add-to-cart advanced-button">Add to Cart</button>
+                </div>
+                <div class="product-card advanced-card" data-id="8" data-name="Turmeric Powder" data-price="120" data-category="spices">
+                    <img src="../assets/images/products/turmeric-powder.jpg" alt="Turmeric Powder" class="product-img">
+                    <h3 class="product-title">Turmeric Powder</h3>
+                    <p class="product-price">LKR 120/100g</p>
+                    <button class="add-to-cart advanced-button">Add to Cart</button>
+                </div>
+                <div class="product-card advanced-card" data-id="9" data-name="Bananas" data-price="100" data-category="fruits">
+                    <img src="../assets/images/products/banana.jpg" alt="Bananas" class="product-img">
+                    <h3 class="product-title">Bananas</h3>
+                    <p class="product-price">LKR 100/dozen</p>
+                    <button class="add-to-cart advanced-button">Add to Cart</button>
+                </div>
+                <div class="product-card advanced-card" data-id="10" data-name="Onions" data-price="180" data-category="vegetables">
+                    <img src="../assets/images/products/onion.jpg" alt="Onions" class="product-img">
+                    <h3 class="product-title">Onions</h3>
+                    <p class="product-price">LKR 180/kg</p>
+                    <button class="add-to-cart advanced-button">Add to Cart</button>
+                </div>
+                <div class="product-card advanced-card" data-id="11" data-name="Chickpeas" data-price="200" data-category="grains">
+                    <img src="../assets/images/products/chickpeas.jpg" alt="Chickpeas" class="product-img">
+                    <h3 class="product-title">Chickpeas</h3>
+                    <p class="product-price">LKR 200/kg</p>
+                    <button class="add-to-cart advanced-button">Add to Cart</button>
+                </div>
+                <div class="product-card advanced-card" data-id="12" data-name="Chili Powder" data-price="140" data-category="spices">
+                    <img src="../assets/images/products/chili-powder.jpg" alt="Chili Powder" class="product-img">
+                    <h3 class="product-title">Chili Powder</h3>
+                    <p class="product-price">LKR 140/100g</p>
+                    <button class="add-to-cart advanced-button">Add to Cart</button>
+                </div>
+                <div class="product-card advanced-card" data-id="13" data-name="Mangoes" data-price="250" data-category="fruits">
+                    <img src="../assets/images/products/mango.jpg" alt="Mangoes" class="product-img">
+                    <h3 class="product-title">Mangoes</h3>
+                    <p class="product-price">LKR 250/kg</p>
+                    <button class="add-to-cart advanced-button">Add to Cart</button>
+                </div>
+                <div class="product-card advanced-card" data-id="14" data-name="Garlic" data-price="300" data-category="vegetables">
+                    <img src="../assets/images/products/garlic.jpg" alt="Garlic" class="product-img">
+                    <h3 class="product-title">Garlic</h3>
+                    <p class="product-price">LKR 300/kg</p>
+                    <button class="add-to-cart advanced-button">Add to Cart</button>
+                </div>
+                <div class="product-card advanced-card" data-id="15" data-name="Papaya" data-price="200" data-category="fruits">
+                    <img src="../assets/images/products/papaya.jpg" alt="Papaya" class="product-img">
+                    <h3 class="product-title">Papaya</h3>
+                    <p class="product-price">LKR 200/kg</p>
+                    <button class="add-to-cart advanced-button">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="advanced-footer">
+        <div class="brand-info">
+            <h3>FreshMart</h3>
+            <p>Fresh groceries delivered across Sri Lanka with fast service.</p>
+            <p><i class="fas fa-phone"></i> +94 112 345 678</p>
+            <p><i class="fas fa-envelope"></i> <a href="mailto:support@freshmart.lk">support@freshmart.lk</a></p>
+            <p><i class="fas fa-dove"></i> Drone Delivery Available</p>
+        </div>
+        <div class="quick-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+        <div class="contact-form">
+            <h3>Contact Us</h3>
+            <form id="contact-form" action="https://formspree.io/f/xqaqjabd" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+        <div class="social-icons">
+            <a href="https://twitter.com/freshmartsl" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://facebook.com/freshmartsl" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/freshmartsl" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="copyright">
+            <p>© 2025 FreshMart. All rights reserved. Last updated: May 19, 2025, 09:26 PM +0530</p>
+        </div>
+    </footer>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/product.js"></script>
+</body>
+</html>
