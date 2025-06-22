@@ -1,78 +1,187 @@
-/* main.js - FreshMart Main JavaScript File */
-/* Last Updated: May 19, 2025, 09:26 PM +0530 */
-
 document.addEventListener('DOMContentLoaded', () => {
-    // Navbar Toggle for Mobile
-    const menuToggle = document.querySelector('.advanced-menu-toggle');
-    const navLinks = document.querySelector('.advanced-nav-links');
+  // Mobile Menu Toggle
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMenu = document.querySelector('.nav-menu');
 
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-    }
-
-    // Popup Ad (Only on Homepage)
-    if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
-        const popup = document.getElementById('popup-ad');
-        const closePopup = document.getElementById('close-popup');
-
-        if (popup) {
-            setTimeout(() => {
-                popup.classList.add('active');
-            }, 1000); // Show after 1 second
-        }
-
-        if (closePopup) {
-            closePopup.addEventListener('click', () => {
-                popup.classList.remove('active');
-            });
-        }
-    }
-
-    // Update Cart Count in Navbar
-    const updateCartCount = () => {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-        const cartCountElements = document.querySelectorAll('#cart-count');
-        cartCountElements.forEach(element => {
-            element.textContent = cartCount;
-        });
-    };
-
-    // Initial cart count update
-    updateCartCount();
-
-    // Listen for storage changes to update cart count
-    window.addEventListener('storage', (e) => {
-        if (e.key === 'cart') {
-            updateCartCount();
-        }
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('hidden');
+      navToggle.textContent = navMenu.classList.contains('hidden') ? '☰' : '×';
     });
+  }
 
-    // Update cart count on page load
-    window.addEventListener('load', updateCartCount);
+  // Slideshow
+  const slides = document.querySelectorAll('.slide');
+  let currentSlide = 0;
 
-    // Scroll Effect for Navbar
-    const navbar = document.querySelector('.advanced-navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
     });
+  }
 
-    // Contact Form Auto-Clear on Submission
-    const contactForm = document.querySelector('#contact-form');
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
 
-    if (contactForm) {
-        contactForm.addEventListener('submit', (event) => {
-            // Since Formspree handles the submission, clear the form after a short delay
-            setTimeout(() => {
-                contactForm.reset(); // Reset the form fields
-                alert('Message sent successfully! The form has been cleared.');
-            }, 500); // Delay to simulate submission
-        });
+  if (slides.length > 0) {
+    setInterval(nextSlide, 5000);
+  }
+
+  // Special Offer Pop-up
+  const specialOffer = document.querySelector('#special-offer');
+  const closeOffer = document.querySelector('#close-offer');
+
+  if (specialOffer && closeOffer) {
+    setTimeout(() => {
+      specialOffer.classList.remove('hidden');
+      specialOffer.querySelector('.bg-white').classList.remove('scale-95', 'opacity-0');
+    }, 2000);
+
+    closeOffer.addEventListener('click', () => {
+      specialOffer.classList.add('hidden');
+    });
+  }
+
+  // Login Pop-up
+  const loginToggle = document.querySelector('#login-toggle');
+  const loginPopup = document.querySelector('#login-popup');
+  const closeLogin = document.querySelector('#close-login');
+  const loginForm = document.querySelector('#login-form');
+
+  function toggleLoginPopup(show) {
+    if (show) {
+      loginPopup.classList.remove('hidden');
+      loginPopup.querySelector('.bg-white').classList.remove('scale-95', 'opacity-0');
+      document.body.classList.add('blurred', 'overflow-hidden');
+    } else {
+      loginPopup.classList.add('hidden');
+      loginPopup.querySelector('.bg-white').classList.add('scale-95', 'opacity-0');
+      document.body.classList.remove('blurred', 'overflow-hidden');
     }
+  }
+
+  if (loginToggle && loginPopup) {
+    loginToggle.addEventListener('click', () => toggleLoginPopup(true));
+  }
+
+  if (closeLogin) {
+    closeLogin.addEventListener('click', () => toggleLoginPopup(false));
+  }
+
+  if (loginPopup) {
+    loginPopup.addEventListener('click', (e) => {
+      if (e.target === loginPopup) {
+        toggleLoginPopup(false);
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !loginPopup.classList.contains('hidden')) {
+      toggleLoginPopup(false);
+    }
+  });
+
+  if (loginForm) {
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      console.log('Login submitted:', {
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value
+      });
+      toggleLoginPopup(false);
+    });
+  }
+
+  // Cart Pop-up
+  const cartToggle = document.querySelector('#cart-toggle');
+  const cartPopup = document.querySelector('#cart-popup');
+  const closeCart = document.querySelector('#close-cart');
+
+  function toggleCartPopup(show) {
+    if (show) {
+      cartPopup.classList.remove('hidden');
+      cartPopup.querySelector('.bg-white').classList.remove('scale-95', 'opacity-0');
+    } else {
+      cartPopup.classList.add('hidden');
+      cartPopup.querySelector('.bg-white').classList.add('scale-95', 'opacity-0');
+    }
+  }
+
+  if (cartToggle && cartPopup) {
+    cartToggle.addEventListener('click', () => toggleCartPopup(true));
+  }
+
+  if (closeCart) {
+    closeCart.addEventListener('click', () => toggleCartPopup(false));
+  }
+
+  if (cartPopup) {
+    cartPopup.addEventListener('click', (e) => {
+      if (e.target === cartPopup) {
+        toggleCartPopup(false);
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !cartPopup.classList.contains('hidden')) {
+      toggleCartPopup(false);
+    }
+  });
 });
+
+// Login Pop-up
+  const loginToggle = document.querySelector('#login-toggle');
+  const loginPopup = document.querySelector('#login-popup');
+  const closeLogin = document.querySelector('#close-login');
+  const loginForm = document.querySelector('#login-form');
+
+  function toggleLoginPopup(show) {
+    if (show) {
+      loginPopup.classList.remove('hidden');
+      loginPopup.querySelector('div').classList.remove('scale-95', 'opacity-0');
+      document.body.classList.add('blurred', 'overflow-hidden');
+    } else {
+      loginPopup.classList.add('hidden');
+      loginPopup.querySelector('div').classList.add('scale-95', 'opacity-0');
+      document.body.classList.remove('blurred', 'overflow-hidden');
+    }
+  }
+
+  if (loginToggle && loginPopup) {
+    loginToggle.addEventListener('click', () => toggleLoginPopup(true));
+  }
+
+  if (closeLogin) {
+    closeLogin.addEventListener('click', () => toggleLoginPopup(false));
+  }
+
+  if (loginPopup) {
+    loginPopup.addEventListener('click', (e) => {
+      if (e.target === loginPopup) {
+        toggleLoginPopup(false);
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !loginPopup.classList.contains('hidden')) {
+      toggleLoginPopup(false);
+    }
+  });
+
+  // Placeholder for login form submission
+  if (loginForm) {
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      console.log('Login submitted:', {
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value
+      });
+      toggleLoginPopup(false); // Close pop-up after submission
+    });
+  }
+;

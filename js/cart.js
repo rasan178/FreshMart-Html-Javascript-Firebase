@@ -1,102 +1,91 @@
-/* cart.js - FreshMart Cart Management */
-/* Last Updated: May 19, 2025, 09:26 PM +0530 */
-
 document.addEventListener('DOMContentLoaded', () => {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let cart = [];
 
-    const updateCartCount = () => {
-        const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-        document.querySelectorAll('#cart-count').forEach(el => {
-            el.textContent = cartCount;
-        });
-    };
+  window.addToCart = function(product, price, image) {
+    console.log(`Adding to cart: ${product}, ${price}, ${image}`);
+    const existingItem = cart.find(item => item.product === product);
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.push({ product, price, image, quantity: 1 });
+    }
+    updateCart();
+    showNotification(`${product} added to cart!`);
+  };
 
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', () => {
-            const card = button.closest('.product-card');
-            const id = card.dataset.id;
-            const name = card.dataset.name;
-            const price = parseFloat(card.dataset.price);
+  window.removeFromCart = function(product) {
+    console.log(`Removing from cart: ${product}`);
+    const itemIndex = cart.findIndex(item => item.product === product);
+    if (itemIndex !== -1) {
+      const item = cart[itemIndex];
+      if (item.quantity > 1) {
+        item.quantity -= 1;
+      } else {
+        cart.splice(itemIndex, 1);
+      }
+      updateCart();
+      showNotification(`${product} removed from cart!`);
+    }
+  };
 
-            const item = cart.find(item => item.id === id);
-            if (item) {
-                item.quantity += 1;
-            } else {
-                cart.push({ id, name, price, quantity: 1 });
-            }
-
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartCount();
-            alert(`${name} added to cart!`);
-        });
-    });
-
+  function updateCart() {
+    console.log('Updating cart:', cart);
+    const cartBadge = document.querySelector('#cart-badge');
+    const cartTotal = document.querySelector('#cart-total');
     const cartItems = document.querySelector('#cart-items');
-    const checkoutCart = document.querySelector('#checkout-cart');
-    const updateCartDisplay = () => {
-        if (cartItems) {
-            cartItems.innerHTML = '';
-            cart.forEach(item => {
-                const div = document.createElement('div');
-                div.classList.add('cart-item');
-                div.innerHTML = `
-                    <img src="../assets/images/products/${item.name.toLowerCase().replace(' ', '-')}.jpg" alt="${item.name}">
-                    <span>${item.name}</span>
-                    <span>LKR ${item.price}</span>
-                    <input type="number" value="${item.quantity}" min="1" data-id="${item.id}">
-                    <button class="remove-item" data-id="${item.id}">Remove</button>
-                `;
-                cartItems.appendChild(div);
-            });
-        }
 
-        if (checkoutCart) {
-            checkoutCart.innerHTML = '<h3>Order Summary</h3>';
-            cart.forEach(item => {
-                const div = document.createElement('div');
-                div.classList.add('cart-item');
-                div.innerHTML = `
-                    <span>${item.name} (x${item.quantity})</span>
-                    <span>LKR ${item.price * item.quantity}</span>
-                `;
-                checkoutCart.appendChild(div);
-            });
-        }
-
-        const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-        if (document.querySelector('#cart-total')) {
-            document.querySelector('#cart-total').textContent = total.toFixed(2);
-        }
-    };
-
-    if (cartItems) {
-        cartItems.addEventListener('change', (e) => {
-            if (e.target.tagName === 'INPUT') {
-                const id = e.target.dataset.id;
-                const quantity = parseInt(e.target.value);
-                const item = cart.find(item => item.id === id);
-                if (quantity > 0) {
-                    item.quantity = quantity;
-                } else {
-                    cart = cart.filter(item => item.id !== id);
-                }
-                localStorage.setItem('cart', JSON.stringify(cart));
-                updateCartCount();
-                updateCartDisplay();
-            }
-        });
-
-        cartItems.addEventListener('click', (e) => {
-            if (e.target.classList.contains('remove-item')) {
-                const id = e.target.dataset.id;
-                cart = cart.filter(item => item.id !== id);
-                localStorage.setItem('cart', JSON.stringify(cart));
-                updateCartCount();
-                updateCartDisplay();
-            }
-        });
+    if (!cartItems) {
+      console.error('Cart items element not found!');
+      return;
     }
 
-    updateCartCount();
-    updateCartDisplay();
+    const totalItems = cart.length; // Count unique products
+    const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    cartBadge.textContent = totalItems;
+    cartTotal.textContent = `LKR ${totalPrice}`;
+
+    cartItems.innerHTML = '';
+    if (cart.length === 0) {
+      cartItems.innerHTML = '<li class="empty-cart">Your cart is empty.</li>';
+      return;
+    }
+
+    cart.forEach(item => {
+      try {
+        const li = document.createElement('li');
+        li.className = 'cart-item';
+        li.innerHTML = `
+          <img src="${item.image}" alt="${item.product}" onerror="this.src='assets/images/placeholder.jpg';">
+          <span class="text-sm">${item.product}</span>
+          <span class="text-sm">LKR ${item.price}</span>
+          <div class="quantity-controls">
+            <button class="btn-quantity" onclick="removeFromCart('${item.product}')">−</button>
+            <span>${item.quantity}</span>
+            <button class="btn-quantity" onclick="addToCart('${item.product}', ${item.price}, '${item.image}')">+</button>
+          </div>
+          <span class="text-sm">LKR ${item.price * item.quantity}</span>
+          <button class="btn-trash" onclick="removeFromCart('${item.product}')"><i class="fas fa-trash"></i></button>
+        `;
+        cartItems.appendChild(li);
+        setTimeout(() => li.classList.add('visible'), 10);
+      } catch (error) {
+        console.error(`Error rendering item ${item.product}:`, error);
+      }
+    });
+  }
+
+  function showNotification(message) {
+    console.log('Showing notification:', message);
+    const notification = document.querySelector('#cart-notification');
+    const messageElement = document.querySelector('#notification-message');
+    
+    if (notification && messageElement) {
+      messageElement.textContent = message;
+      notification.classList.remove('hidden');
+      setTimeout(() => notification.classList.add('hidden'), 3000);
+    } else {
+      console.error('Notification elements not found!');
+    }
+  }
 });
