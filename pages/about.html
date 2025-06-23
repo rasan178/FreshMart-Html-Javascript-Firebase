@@ -1,93 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - FreshMart</title>
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreshMart - About</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/x-icon" href="../assets/images/logo.png">
 </head>
 <body>
-    <header>
-        <nav class="advanced-navbar">
-            <div class="advanced-logo">
-                <img src="../assets/images/logo.png" alt="FreshMart Logo" class="logo-img">
-            </div>
-            <ul class="advanced-nav-links">
-                <li><a href="../index.html" class="advanced-nav-link">Home</a></li>
-                <li><a href="products.html" class="advanced-nav-link">Products</a></li>
-                <li>
-                    <a href="cart.html" class="advanced-nav-link advanced-cart-link">
-                        Cart (<span id="cart-count">0</span>)
-                    </a>
-                </li>
-                <li><a href="about.html" class="advanced-nav-link">About</a></li>
-                <li id="auth-links">
-                    <a href="../signin.html" class="advanced-nav-link">Sign In</a>
-                    <a href="../signup.html" class="advanced-nav-link">Sign Up</a>
-                </li>
-                <li class="dropdown" id="user-dropdown">
-                    <span class="dropdown-toggle">Logged in as <span id="user-info"></span> ▼</span>
-                    <ul class="dropdown-menu" id="dropdown-menu">
-                        <li><a href="../profile.html" id="profile-link" class="dropdown-item">Profile</a></li>
-                        <li><a href="#" id="logout" class="dropdown-item">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <div class="advanced-menu-toggle">☰</div>
-        </nav>
-    </header>
+    <!-- Navbar -->
+  <header class="navbar bg-green-600">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-3xl font-bold text-white font-['Poppins'] flex items-center">
+        <img src="../assets/images/logo.png" alt="FreshMart Logo" class="w-10 h-10 mr-2">FreshMart
+      </a>
+      <nav class="nav-menu hidden md:flex space-x-6 items-center">
+        <a href="../index.html" class="text-white hover:text-green-200 transition-colors duration-300">Home</a>
+        <a href="products.html" class="text-white hover:text-green-200 transition-colors duration-300">Products</a>
+        <a href="about.html" class="text-white hover:text-green-200 transition-colors duration-300">About</a>
+        <button id="login-toggle" class="text-white hover:text-green-200 transition-colors duration-300">Login</button>
+      </nav>
+      <button class="nav-toggle md:hidden text-white text-2xl">☰</button>
+    </div>
+  </header>
 
-    <main class="content">
-        <section class="about">
-            <h2>About FreshMart</h2>
-            <p>FreshMart is your trusted online grocery delivery service in Sri Lanka. We source fresh, high-quality products like rice, spices, and vegetables from local farmers and deliver them to your doorstep in Colombo, Kandy, and other major cities.</p>
-            <p>Our mission is to make grocery shopping convenient and affordable, with fast delivery and payment options like cash on delivery. Shop with us today!</p>
+    <main class="content py-12">
+        <section class="about container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-start gap-8 mb-12">
+                <div class="md:w-1/2">
+                    <img src="https://sendapp.com.au/wp-content/uploads/2023/05/istockphoto-1363056697-612x612-1.jpg" alt="FreshMart Store" class="w-full h-auto rounded-lg shadow-lg">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold font-['Poppins'] text-gray-800 mb-4">About FreshMart</h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-4">
+                        FreshMart is your trusted online grocery delivery service in Sri Lanka, dedicated to bringing the freshest produce directly from local farmers to your doorstep. We pride ourselves on offering high-quality products, including rice, spices, vegetables, and more, sourced sustainably to support our local communities.
+                    </p>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                        Our mission is to make grocery shopping convenient, affordable, and reliable, with fast delivery across major cities like Colombo, Kandy, and Galle. With flexible payment options like cash on delivery and a commitment to customer satisfaction, FreshMart is your go-to choice for fresh groceries. Shop with us today!
+                    </p>
+                    <div class="contact-info">
+                        <h3 class="text-xl font-bold font-['Poppins'] text-gray-800 mb-4">contact information</h3>
+                        <ul class="space-y-3 text-gray-600 text-sm">
+                            <li class="flex items-center">
+                                <i class="fas fa-clock text-green-600 mr-2"></i>
+                                <span>opening hours: Monday - Sunday, 8:00 AM - 8:00 PM</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-green-600 mr-2"></i>
+                                <span>main branch: 123 Galle Road, Colombo 03, Sri Lanka</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-phone-alt text-green-600 mr-2"></i>
+                                <span>emergency contact: +94 112 987 654</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-section grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                <div class="stat-card bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-4xl font-bold text-green-600 mb-2" id="customer-count">0+</h3>
+                    <p class="text-gray-600 font-medium">Happy Customers</p>
+                </div>
+                <div class="stat-card bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-4xl font-bold text-green-600 mb-2" id="item-count">0+</h3>
+                    <p class="text-gray-600 font-medium">Items Available</p>
+                </div>
+                <div class="stat-card bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-4xl font-bold text-green-600 mb-2" id="city-count">0+</h3>
+                    <p class="text-gray-600 font-medium">Cities Served</p>
+                </div>
+                <div class="stat-card bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-4xl font-bold text-green-600 mb-2" id="delivery-count">0+</h3>
+                    <p class="text-gray-600 font-medium">Successful Deliveries</p>
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer class="advanced-footer">
-        <div class="brand-info">
-            <h3>FreshMart</h3>
-            <p>Fresh groceries delivered across Sri Lanka with fast service.</p>
-            <p><i class="fas fa-phone"></i> +94 112 345 678</p>
-            <p><i class="fas fa-envelope"></i> <a href="mailto:support@freshmart.lk">support@freshmart.lk</a></p>
-            <p><i class="fas fa-dove"></i> Drone Delivery Available</p>
-        </div>
-        <div class="quick-links">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="cart.html">Cart</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
-        </div>
-        <div class="contact-form">
-            <h3>Contact Us</h3>
-            <form id="contact-form" action="https://formspree.io/f/xqaqjabd" method="POST">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" placeholder="Your Message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
-        <div class="social-icons">
-            <a href="https://twitter.com/freshmartsl" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://facebook.com/freshmartsl" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://instagram.com/freshmartsl" target="_blank"><i class="fab fa-instagram"></i></a>
-        </div>
-        <div class="copyright">
-            <p>© 2025 FreshMart. All rights reserved. Last updated: May 19, 2025, 09:26 PM +0530</p>
-        </div>
-    </footer>
+    <!-- Login Pop-up -->
+<div id="login-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="bg-gray-50 rounded-lg p-6 max-w-md w-full mx-4 transform scale-95 opacity-0 transition-all duration-300">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-2xl font-bold font-['Poppins'] text-gray-800">Login to FreshMart</h2>
+      <button id="close-login" class="text-gray-600 hover:text-gray-800 text-lg">×</button>
+    </div>
+    <form id="login-form">
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" class="w-full p-2 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" required>
+      </div>
+      <div class="mb-4">
+        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" class="w-full p-2 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" required>
+      </div>
+      <button type="submit" class="btn-primary w-full">Login</button>
+    </form>
+    <p class="mt-4 text-center text-sm text-gray-600">
+      Don't have an account? <button id="show-signup" class="text-green-600 hover:text-green-500 transition-colors duration-200">Sign Up</button>
+    </p>
+  </div>
+</div>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
-<script src="js/main.js"></script>
-<script src="js/auth.js"></script>
-    <script src="../js/cart.js"></script>
+<!-- Signup Pop-up -->
+<div id="signup-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="bg-gray-50 rounded-lg p-6 max-w-md w-full mx-4 transform scale-95 opacity-0 transition-all duration-300">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-2xl font-bold font-['Poppins'] text-gray-800">Sign Up for FreshMart</h2>
+      <button id="close-signup" class="text-gray-600 hover:text-gray-800 text-lg">×</button>
+    </div>
+    <form id="signup-form">
+      <div class="mb-4">
+        <label for="signup-email" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+        <input type="name" id="name" name="name" placeholder="Enter your name" class="w-full p-2 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" required>
+      </div>
+      <div class="mb-4">
+        <label for="signup-email" class="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
+        <input type="mobilenumber" id="mbno" name="mobile number" placeholder="Enter your mobile number" class="w-full p-2 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" required>
+      </div>
+      <div class="mb-4">
+        <label for="signup-email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+        <input type="email" id="signup-email" name="email" placeholder="Enter your email" class="w-full p-2 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" required>
+      </div>
+      <div class="mb-4">
+        <label for="signup-password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+        <input type="password" id="signup-password" name="password" placeholder="Enter your password" class="w-full p-2 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" required>
+      </div>
+      
+      <button type="submit" class="btn-primary w-full">Sign Up</button>
+    </form>
+    <p class="mt-4 text-center text-sm text-gray-600">
+      Already have an account? <button id="show-login" class="text-green-600 hover:text-green-500 transition-colors duration-200">Login</button>
+    </p>
+  </div>
+</div>
+ <!-- Footer -->
+<footer class="footer bg-green-800 text-white py-16">
+  <div class="container mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+      <!-- Company Info -->
+      <div class="col-span-1">
+        <a href="index.html" class="flex items-center text-3xl font-bold font-['Poppins'] mb-4">
+          <img src="../assets/images/logo.png" alt="FreshMart Logo" class="w-12 h-12 mr-3">FreshMart
+        </a>
+        <p class="text-gray-300 text-sm leading-relaxed mb-6">
+          FreshMart delivers premium, fresh groceries across Sri Lanka with lightning-fast service, offering a wide selection of organic produce and essentials right to your doorstep.
+        </p>
+        <ul class="space-y-3 text-gray-300 text-sm">
+          <li class="flex items-center">
+            <i class="fas fa-phone-alt mr-2 text-green-400"></i>
+            <span>+94 112 345 678</span>
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-envelope mr-2 text-green-400"></i>
+            <span>support@freshmart.lk</span>
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-drone mr-2 text-green-400"></i>
+            <span>Drone Delivery Available</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-span-1">
+        <h3 class="text-2xl font-bold font-['Poppins'] mb-6 text-green-300">Quick Links</h3>
+        <ul class="space-y-3 text-gray-300 text-sm">
+          <li><a href="index.html" class="hover:text-green-400 transition-colors duration-300">Home</a></li>
+          <li><a href="pages/products.html" class="hover:text-green-400 transition-colors duration-300">Products</a></li>
+          <li><a href="pages/cart.html" class="hover:text-green-400 transition-colors duration-300">Cart</a></li>
+          <li><a href="pages/about.html" class="hover:text-green-400 transition-colors duration-300">About</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="col-span-1">
+        <h3 class="text-2xl font-bold font-['Poppins'] mb-6 text-green-300">Contact Us</h3>
+        <div>
+          <input type="text" placeholder="Name" class="w-full p-3 mb-4 rounded-lg bg-gray-700 text-white text-sm focus:ring-2 focus:ring-green-400 outline-none">
+          <input type="email" placeholder="Email" class="w-full p-3 mb-4 rounded-lg bg-gray-700 text-white text-sm focus:ring-2 focus:ring-green-400 outline-none">
+          <textarea placeholder="Message" rows="4" class="w-full p-3 mb-4 rounded-lg bg-gray-700 text-white text-sm focus:ring-2 focus:ring-green-400 outline-none"></textarea>
+          <button type="submit" class="w-full p-3 bg-green-600 text-white rounded-lg hover:bg-green-500 transition-colors duration-300 text-sm font-semibold">Send Message</button>
+        </div>
+      </div>
+
+      <!-- Newsletter Signup -->
+      <div class="col-span-1">
+        <h3 class="text-2xl font-bold font-['Poppins'] mb-6 text-green-300">Newsletter</h3>
+        <p class="text-gray-300 text-sm mb-4">
+          Subscribe to our newsletter for exclusive offers and updates on fresh arrivals.
+        </p>
+        <div>
+          <input type="email" placeholder="Your Email" class="w-full p-3 mb-4 rounded-lg bg-gray-700 text-white text-sm focus:ring-2 focus:ring-green-400 outline-none">
+          <button type="submit" class="w-full p-3 bg-green-600 text-white rounded-lg hover:bg-green-500 transition-colors duration-300 text-sm font-semibold">Subscribe</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="mt-12 pt-8 border-t border-gray-600 text-center">
+      <div class="flex justify-center space-x-6 mb-6">
+        <a href="#" class="text-gray-300 hover:text-green-400 transition-colors duration-300 hover:scale-110">
+          <i class="fab fa-facebook-f w-6 h-6"></i>
+        </a>
+        <a href="#" class="text-gray-300 hover:text-green-400 transition-colors duration-300 hover:scale-110">
+          <i class="fab fa-twitter w-6 h-6"></i>
+        </a>
+        <a href="#" class="text-gray-300 hover:text-green-400 transition-colors duration-300 hover:scale-110">
+          <i class="fab fa-instagram w-6 h-6"></i>
+        </a>
+      </div>
+      <p class="text-gray-300 text-sm">© 2025 FreshMart. All rights reserved. Last updated: June 23, 2025, 01:11 AM +0530</p>
+    </div>
+  </div>
+</footer>
+<!-- Font Awesome for Icons -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/cart.js"></script>
+<script src="../js/search.js"></script>
+<script src="../js/product.js"></script>
+<script src="../js/auth.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Counter animation function
+    function animateCounter(element, target, duration, suffix = '+') {
+        let start = 0;
+        const increment = target / (duration / 16); // 60 FPS
+        let current = start;
+
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            element.textContent = Math.floor(current) + suffix;
+        }, 16);
+    }
+
+    // Initialize counters
+    animateCounter(document.getElementById('customer-count'), 500, 2000);
+    animateCounter(document.getElementById('item-count'), 50, 2000);
+    animateCounter(document.getElementById('city-count'), 10, 2000);
+    animateCounter(document.getElementById('delivery-count'), 650, 2000);
+});
+</script>
 </body>
 </html>

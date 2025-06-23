@@ -37,52 +37,61 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       specialOffer.classList.remove('hidden');
       specialOffer.querySelector('.bg-white').classList.remove('scale-95', 'opacity-0');
+      document.body.classList.add('blurred', 'overflow-hidden');
     }, 2000);
 
     closeOffer.addEventListener('click', () => {
       specialOffer.classList.add('hidden');
+      document.body.classList.remove('blurred', 'overflow-hidden');
+    });
+
+    specialOffer.addEventListener('click', (e) => {
+      if (e.target === specialOffer) {
+        specialOffer.classList.add('hidden');
+        document.body.classList.remove('blurred', 'overflow-hidden');
+      }
     });
   }
 
-  // Login Pop-up
+  // Login and Signup Pop-ups
   const loginToggle = document.querySelector('#login-toggle');
   const loginPopup = document.querySelector('#login-popup');
   const closeLogin = document.querySelector('#close-login');
   const loginForm = document.querySelector('#login-form');
+  const showSignup = document.querySelector('#show-signup');
+  const signupPopup = document.querySelector('#signup-popup');
+  const closeSignup = document.querySelector('#close-signup');
+  const signupForm = document.querySelector('#signup-form');
+  const showLogin = document.querySelector('#show-login');
 
-  function toggleLoginPopup(show) {
+  function togglePopup(popup, show) {
     if (show) {
-      loginPopup.classList.remove('hidden');
-      loginPopup.querySelector('.bg-white').classList.remove('scale-95', 'opacity-0');
+      popup.classList.remove('hidden');
+      popup.querySelector('.bg-gray-50').classList.remove('scale-95', 'opacity-0');
       document.body.classList.add('blurred', 'overflow-hidden');
     } else {
-      loginPopup.classList.add('hidden');
-      loginPopup.querySelector('.bg-white').classList.add('scale-95', 'opacity-0');
+      popup.classList.add('hidden');
+      popup.querySelector('.bg-gray-50').classList.add('scale-95', 'opacity-0');
       document.body.classList.remove('blurred', 'overflow-hidden');
     }
   }
 
+  // Login Popup
   if (loginToggle && loginPopup) {
-    loginToggle.addEventListener('click', () => toggleLoginPopup(true));
+    loginToggle.addEventListener('click', () => togglePopup(loginPopup, true));
   }
 
   if (closeLogin) {
-    closeLogin.addEventListener('click', () => toggleLoginPopup(false));
+    closeLogin.addEventListener('click', () => togglePopup(loginPopup, false));
   }
 
   if (loginPopup) {
     loginPopup.addEventListener('click', (e) => {
       if (e.target === loginPopup) {
-        toggleLoginPopup(false);
+        togglePopup(loginPopup, false);
       }
     });
   }
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !loginPopup.classList.contains('hidden')) {
-      toggleLoginPopup(false);
-    }
-  });
 
   if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
@@ -91,7 +100,53 @@ document.addEventListener('DOMContentLoaded', () => {
         email: document.getElementById('email').value,
         password: document.getElementById('password').value
       });
-      toggleLoginPopup(false);
+      togglePopup(loginPopup, false);
+      loginForm.reset();
+    });
+  }
+
+  // Signup Popup
+  if (showSignup && signupPopup) {
+    showSignup.addEventListener('click', () => {
+      togglePopup(loginPopup, false);
+      togglePopup(signupPopup, true);
+    });
+  }
+
+  if (closeSignup) {
+    closeSignup.addEventListener('click', () => togglePopup(signupPopup, false));
+  }
+
+  if (signupPopup) {
+    signupPopup.addEventListener('click', (e) => {
+      if (e.target === signupPopup) {
+        togglePopup(signupPopup, false);
+      }
+    });
+  }
+
+  if (showLogin && loginPopup) {
+    showLogin.addEventListener('click', () => {
+      togglePopup(signupPopup, false);
+      togglePopup(loginPopup, true);
+    });
+  }
+
+  if (signupForm) {
+    signupForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+
+      if (password !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+      }
+
+      console.log('Signup submitted:', { email, password });
+      togglePopup(signupPopup, false);
+      signupForm.reset();
     });
   }
 
@@ -100,88 +155,69 @@ document.addEventListener('DOMContentLoaded', () => {
   const cartPopup = document.querySelector('#cart-popup');
   const closeCart = document.querySelector('#close-cart');
 
-  function toggleCartPopup(show) {
-    if (show) {
-      cartPopup.classList.remove('hidden');
-      cartPopup.querySelector('.bg-white').classList.remove('scale-95', 'opacity-0');
-    } else {
-      cartPopup.classList.add('hidden');
-      cartPopup.querySelector('.bg-white').classList.add('scale-95', 'opacity-0');
-    }
-  }
-
   if (cartToggle && cartPopup) {
-    cartToggle.addEventListener('click', () => toggleCartPopup(true));
+    cartToggle.addEventListener('click', () => togglePopup(cartPopup, true));
   }
 
   if (closeCart) {
-    closeCart.addEventListener('click', () => toggleCartPopup(false));
+    closeCart.addEventListener('click', () => togglePopup(cartPopup, false));
   }
 
   if (cartPopup) {
     cartPopup.addEventListener('click', (e) => {
       if (e.target === cartPopup) {
-        toggleCartPopup(false);
+        togglePopup(cartPopup, false);
       }
     });
   }
 
+  // Cart Notification
+  const notification = document.getElementById('cart-notification');
+  const notificationMessage = document.getElementById('notification-message');
+
+  function showNotification(message) {
+    if (notification && notificationMessage) {
+      notificationMessage.textContent = message;
+      notification.classList.remove('hidden');
+      notification.classList.add('opacity-100', 'translate-y-0');
+
+      // Hide after 3 seconds
+      setTimeout(() => {
+        notification.classList.remove('opacity-100', 'translate-y-0');
+        notification.classList.add('opacity-0', 'translate-y-10');
+        setTimeout(() => notification.classList.add('hidden'), 300); // Match transition duration
+      }, 3000);
+    }
+  }
+
+  // Trigger notification on "Add to Cart" button click
+  const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
+  addToCartButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      showNotification('Item added to cart!');
+    });
+  });
+
+  // Trigger notification on "Remove from Cart" button click
+  const removeFromCartButtons = document.querySelectorAll('.remove-from-cart-button');
+  removeFromCartButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      showNotification('Item removed from cart!');
+    });
+  });
+
+  // Close popups on Escape key
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !cartPopup.classList.contains('hidden')) {
-      toggleCartPopup(false);
+    if (e.key === 'Escape') {
+      if (loginPopup && !loginPopup.classList.contains('hidden')) {
+        togglePopup(loginPopup, false);
+      }
+      if (signupPopup && !signupPopup.classList.contains('hidden')) {
+        togglePopup(signupPopup, false);
+      }
+      if (cartPopup && !cartPopup.classList.contains('hidden')) {
+        togglePopup(cartPopup, false);
+      }
     }
   });
 });
-
-// Login Pop-up
-  const loginToggle = document.querySelector('#login-toggle');
-  const loginPopup = document.querySelector('#login-popup');
-  const closeLogin = document.querySelector('#close-login');
-  const loginForm = document.querySelector('#login-form');
-
-  function toggleLoginPopup(show) {
-    if (show) {
-      loginPopup.classList.remove('hidden');
-      loginPopup.querySelector('div').classList.remove('scale-95', 'opacity-0');
-      document.body.classList.add('blurred', 'overflow-hidden');
-    } else {
-      loginPopup.classList.add('hidden');
-      loginPopup.querySelector('div').classList.add('scale-95', 'opacity-0');
-      document.body.classList.remove('blurred', 'overflow-hidden');
-    }
-  }
-
-  if (loginToggle && loginPopup) {
-    loginToggle.addEventListener('click', () => toggleLoginPopup(true));
-  }
-
-  if (closeLogin) {
-    closeLogin.addEventListener('click', () => toggleLoginPopup(false));
-  }
-
-  if (loginPopup) {
-    loginPopup.addEventListener('click', (e) => {
-      if (e.target === loginPopup) {
-        toggleLoginPopup(false);
-      }
-    });
-  }
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !loginPopup.classList.contains('hidden')) {
-      toggleLoginPopup(false);
-    }
-  });
-
-  // Placeholder for login form submission
-  if (loginForm) {
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      console.log('Login submitted:', {
-        email: document.getElementById('email').value,
-        password: document.getElementById('password').value
-      });
-      toggleLoginPopup(false); // Close pop-up after submission
-    });
-  }
-;

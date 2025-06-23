@@ -44,9 +44,9 @@
   </div>
 
   <!-- Cart Notification -->
-  <div id="cart-notification" class="fixed top-4 right-4 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg hidden transform translate-y-[-20px] opacity-0 transition-all duration-300 z-50">
-    <p id="notification-message">Item added/removed from cart!</p>
-  </div>
+    <div id="cart-notification" class="fixed bottom-4 left-4 bg-green-500 text-white p-4 rounded-lg shadow-lg transform translate-y-10 opacity-0 transition-all duration-300 hidden">
+        <p id="notification-message">Item added/removed from cart!</p>
+    </div>
 
   <!-- Cart Component -->
   <div class="cart-icon fixed bottom-8 right-8 z-50">
@@ -77,29 +77,63 @@
     </div>
   </div>
 
+  
     <!-- Login Pop-up -->
-  <div id="login-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-    <div class="bg-gray-50 rounded-lg p-6 max-w-md w-full mx-4 transform scale-95 opacity-0 transition-all duration-300">
-      <div class="flex justify-between items-center mb-4">
-        <h2 class="text-2xl font-bold font-['Poppins'] text-gray-800">Login to FreshMart</h2>
-        <button id="close-login" class="text-gray-600 hover:text-gray-800 text-lg">×</button>
-      </div>
-      <form id="login-form">
-        <div class="mb-4">
-          <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-          <input type="email" id="email" name="email" placeholder="Enter your email" class="w-full p-2 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" required>
-        </div>
-        <div class="mb-4">
-          <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-          <input type="password" id="password" name="password" placeholder="Enter your password" class="w-full p-2 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" required>
-        </div>
-        <button type="submit" class="btn-primary w-full">Login</button>
-      </form>
-      <p class="mt-4 text-center text-sm text-gray-600">
-        Don't have an account? <a href="pages/signup.html" class="text-green-600 hover:text-green-500 transition-colors duration-200">Sign Up</a>
-      </p>
+<div id="login-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="bg-gray-50 rounded-lg p-6 max-w-md w-full mx-4 transform scale-95 opacity-0 transition-all duration-300">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-2xl font-bold font-['Poppins'] text-gray-800">Login to FreshMart</h2>
+      <button id="close-login" class="text-gray-600 hover:text-gray-800 text-lg">×</button>
     </div>
+    <form id="login-form">
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" class="w-full p-2 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" required>
+      </div>
+      <div class="mb-4">
+        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" class="w-full p-2 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" required>
+      </div>
+      <button type="submit" class="btn-primary w-full">Login</button>
+    </form>
+    <p class="mt-4 text-center text-sm text-gray-600">
+      Don't have an account? <button id="show-signup" class="text-green-600 hover:text-green-500 transition-colors duration-200">Sign Up</button>
+    </p>
   </div>
+</div>
+
+<!-- Signup Pop-up -->
+<div id="signup-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="bg-gray-50 rounded-lg p-6 max-w-md w-full mx-4 transform scale-95 opacity-0 transition-all duration-300">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-2xl font-bold font-['Poppins'] text-gray-800">Sign Up for FreshMart</h2>
+      <button id="close-signup" class="text-gray-600 hover:text-gray-800 text-lg">×</button>
+    </div>
+    <form id="signup-form">
+      <div class="mb-4">
+        <label for="signup-email" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+        <input type="name" id="name" name="name" placeholder="Enter your name" class="w-full p-2 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" required>
+      </div>
+      <div class="mb-4">
+        <label for="signup-email" class="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
+        <input type="mobilenumber" id="mbno" name="mobile number" placeholder="Enter your mobile number" class="w-full p-2 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" required>
+      </div>
+      <div class="mb-4">
+        <label for="signup-email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+        <input type="email" id="signup-email" name="email" placeholder="Enter your email" class="w-full p-2 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" required>
+      </div>
+      <div class="mb-4">
+        <label for="signup-password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+        <input type="password" id="signup-password" name="password" placeholder="Enter your password" class="w-full p-2 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" required>
+      </div>
+      
+      <button type="submit" class="btn-primary w-full">Sign Up</button>
+    </form>
+    <p class="mt-4 text-center text-sm text-gray-600">
+      Already have an account? <button id="show-login" class="text-green-600 hover:text-green-500 transition-colors duration-200">Login</button>
+    </p>
+  </div>
+</div>
 
   <!-- Hero Section with Slideshow -->
   <section class="banner relative">
@@ -169,212 +203,92 @@
             <button onclick="addToCart('Green Beans', 150, 'https://www.tablefortwoblog.com/wp-content/uploads/2022/05/chilled-marinated-green-beans-recipe-photo-tablefortwoblog-5-scaled.jpg')" class="btn-primary mt-4 w-full">Add to Cart</button>
           </div>
         </div>
-        <!-- Row 2 
-        <div class="product-card bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <img src="https://media.istockphoto.com/id/647288162/photo/mung-beans-in-a-bowl.jpg?s=612x612&w=0&k=20&c=58df_gZryIRIVKX-QOYR5hquyqFxhZrVaN8g5BzXfqE=" alt="Mung beans in a bowl" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold font-['Poppins'] text-gray-800">Mung Beans</h3>
-            <p class="text-green-600 font-medium">LKR 220/kg</p>
-            <button onclick="addToCart('Mung Beans', 220, 'https://media.istockphoto.com/id/647288162/photo/mung-beans-in-a-bowl.jpg?s=612x612&w=0&k=20&c=58df_gZryIRIVKX-QOYR5hquyqFxhZrVaN8g5BzXfqE=')" class="btn-primary mt-4 w-full">Add to Cart</button>
-          </div>
-        </div>
-        <div class="product-card bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <img src="https://www.naatigrains.com/image/cache/catalog/naatigrains-products/NG121/pure-turmeric-powder-hand-processed-solar-dried-stone-order-now-grinded-by-naati-grains-1000x1000.jpg" alt="Turmeric powder in a bowl" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold font-['Poppins'] text-gray-800">Turmeric Powder</h3>
-            <p class="text-green-600 font-medium">LKR 120/100g</p>
-            <button onclick="addToCart('Turmeric Powder', 120, 'https://www.naatigrains.com/image/cache/catalog/naatigrains-products/NG121/pure-turmeric-powder-hand-processed-solar-dried-stone-order-now-grinded-by-naati-grains-1000x1000.jpg')" class="btn-primary mt-4 w-full">Add to Cart</button>
-          </div>
-        </div>
-        <div class="product-card bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <img src="https://media.istockphoto.com/id/172876004/photo/banana-wallpaper.jpg?s=612x612&w=0&k=20&c=DjUIq77Fh3ljde_WJNwYl17e86VxMUpOwYiVL2XJo9U=" alt="Ripe bananas" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold font-['Poppins'] text-gray-800">Bananas</h3>
-            <p class="text-green-600 font-medium">LKR 100/dozen</p>
-            <button onclick="addToCart('Bananas', 100, 'https://media.istockphoto.com/id/172876004/photo/banana-wallpaper.jpg?s=612x612&w=0&k=20&c=DjUIq77Fh3ljde_WJNwYl17e86VxMUpOwYiVL2XJo9U=')" class="btn-primary mt-4 w-full">Add to Cart</button>
-          </div>
-        </div>
-        <div class="product-card bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <img src="https://images.immediate.co.uk/production/volatile/sites/30/2019/08/Onion-72ea178.jpg" alt="Whole onions" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold font-['Poppins'] text-gray-800">Onions</h3>
-            <p class="text-green-600 font-medium">LKR 180/kg</p>
-            <button onclick="addToCart('Onions', 180, 'https://images.immediate.co.uk/production/volatile/sites/30/2019/08/Onion-72ea178.jpg')" class="btn-primary mt-4 w-full">Add to Cart</button>
-          </div>
-        </div>
-        <div class="product-card bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <img src="https://www.inspiredtaste.net/wp-content/uploads/2016/06/How-to-Cook-Chickpeas-Recipe-1-1200.jpg" alt="Chickpeas in a bowl" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold font-['Poppins'] text-gray-800">Chickpeas</h3>
-            <p class="text-green-600 font-medium">LKR 200/kg</p>
-            <button onclick="addToCart('Chickpeas', 200, 'https://www.inspiredtaste.net/wp-content/uploads/2016/06/How-to-Cook-Chickpeas-Recipe-1-1200.jpg')" class="btn-primary mt-4 w-full">Add to Cart</button>
-          </div>
-        </div>
-        <div class="product-card bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <img src="https://www.finedininglovers.com/sites/default/files/styles/1_1_768x768/public/2025-01/chili%20powder.jpg.webp?itok=x6iXi9ho" alt="Chili powder in a bowl" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold font-['Poppins'] text-gray-800">Chili Powder</h3>
-            <p class="text-green-600 font-medium">LKR 140/100g</p>
-            <button onclick="addToCart('Chili Powder', 140, 'https://www.finedininglovers.com/sites/default/files/styles/1_1_768x768/public/2025-01/chili%20powder.jpg.webp?itok=x6iXi9ho')" class="btn-primary mt-4 w-full">Add to Cart</button>
-          </div>
-        </div>
-        
-        <div class="product-card bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <img src="https://images.pexels.com/photos/2294471/pexels-photo-2294471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Ripe mangoes" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold font-['Poppins'] text-gray-800">Mangoes</h3>
-            <p class="text-green-600 font-medium">LKR 250/kg</p>
-            <button onclick="addToCart('Mangoes', 250, 'https://images.pexels.com/photos/2294471/pexels-photo-2294471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500')" class="btn-primary mt-4 w-full">Add to Cart</button>
-          </div>
-        </div>
-        <div class="product-card bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <img src="https://plantura.garden/uk/wp-content/uploads/sites/2/2023/07/garlic-bulbs-cloves.jpg" alt="Garlic bulbs" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold font-['Poppins'] text-gray-800">Garlic</h3>
-            <p class="text-green-600 font-medium">LKR 300/kg</p>
-            <button onclick="addToCart('Garlic', 300, 'https://plantura.garden/uk/wp-content/uploads/sites/2/2023/07/garlic-bulbs-cloves.jpg')" class="btn-primary mt-4 w-full">Add to Cart</button>
-          </div>
-        </div>
-        <div class="product-card bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <img src="https://draxe.com/wp-content/uploads/2018/11/DrAxePapayaBenefitsThumbnail.jpg" alt="Sliced papaya" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold font-['Poppins'] text-gray-800">Papaya</h3>
-            <p class="text-green-600 font-medium">LKR 200/kg</p>
-            <button onclick="addToCart('Papaya', 200, 'https://draxe.com/wp-content/uploads/2018/11/DrAxePapayaBenefitsThumbnail.jpg')" class="btn-primary mt-4 w-full">Add to Cart</button>
-          </div>
-        </div>
-        <div class="product-card bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <img src="https://pushtiorganics.com/cdn/shop/files/Brinjal_d2d7db50-62dd-4b99-af45-9f0adf46703d.png?v=1709270808" alt="Brinjal" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold font-['Poppins'] text-gray-800">Brinjal</h3>
-            <p class="text-green-600 font-medium">LKR 150/kg</p>
-            <button onclick="addToCart('Brinjal', 150, 'https://pushtiorganics.com/cdn/shop/files/Brinjal_d2d7db50-62dd-4b99-af45-9f0adf46703d.png?v=1709270808')" class="btn-primary mt-4 w-full">Add to Cart</button>
-          </div>
-        </div>
-        <div class="product-card bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRaY7l33pRQSrOYXDvKsOIfUsHvlp154XzyA&s" alt="Salt" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold font-['Poppins'] text-gray-800">Salt</h3>
-            <p class="text-green-600 font-medium">LKR 400/kg</p>
-            <button onclick="addToCart('Salt', 400, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRaY7l33pRQSrOYXDvKsOIfUsHvlp154XzyA&s')" class="btn-primary mt-4 w-full">Add to Cart</button>
-          </div>
-        </div>
-        <div class="product-card bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <img src="https://sidapur.com/cdn/shop/products/lifestyle_1100x.jpg?v=1643528842" alt="pepper" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold font-['Poppins'] text-gray-800">Pepper</h3>
-            <p class="text-green-600 font-medium">LKR 180/unit</p>
-            <button onclick="addToCart('Pepper', 180, 'https://sidapur.com/cdn/shop/products/lifestyle_1100x.jpg?v=1643528842')" class="btn-primary mt-4 w-full">Add to Cart</button>
-          </div>
-        </div>
-        
-        <div class="product-card bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <img src="https://hips.hearstapps.com/hmg-prod/images/apples-at-farmers-market-royalty-free-image-1627321463.jpg?crop=0.796xw:1.00xh;0.103xw,0&resize=640:*" alt="Fresh apples" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold font-['Poppins'] text-gray-800">Apples</h3>
-            <p class="text-green-600 font-medium">LKR 300/kg</p>
-            <button onclick="addToCart('Apples', 300, 'https://hips.hearstapps.com/hmg-prod/images/apples-at-farmers-market-royalty-free-image-1627321463.jpg?crop=0.796xw:1.00xh;0.103xw,0&resize=640:*')" class="btn-primary mt-4 w-full">Add to Cart</button>
-          </div>
-        </div>
-        <div class="product-card bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <img src="https://images.pexels.com/photos/143133/pexels-photo-143133.jpeg" alt="Fresh carrots" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold font-['Poppins'] text-gray-800">Carrots</h3>
-            <p class="text-green-600 font-medium">LKR 180/kg</p>
-            <button onclick="addToCart('Carrots', 180, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnBh7WSnfugUVdcGVtK_KuO9tOoRb9yuC0Sw&shttps://images.pexels.com/photos/143133/pexels-photo-143133.jpeg')" class="btn-primary mt-4 w-full">Add to Cart</button>
-          </div>
-        </div>
-        <div class="product-card bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <img src="https://snaped.fns.usda.gov/sites/default/files/styles/crop_ratio_7_5/public/seasonal-produce/2018-05/broccoli.jpg.webp?itok=9hD8BBER" alt="Fresh broccoli" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold font-['Poppins'] text-gray-800">Broccoli</h3>
-            <p class="text-green-600 font-medium">LKR 250/kg</p>
-            <button onclick="addToCart('Broccoli', 250, 'https://snaped.fns.usda.gov/sites/default/files/styles/crop_ratio_7_5/public/seasonal-produce/2018-05/broccoli.jpg.webp?itok=9hD8BBER')" class="btn-primary mt-4 w-full">Add to Cart</button>
-          </div>
-        </div>
-        <div class="product-card bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <img src="https://t4.ftcdn.net/jpg/02/20/02/41/360_F_220024121_lvQqND2X6YcINIlgNwTXcwC5Ws6no0RQ.jpg" alt="Fresh oranges" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold font-['Poppins'] text-gray-800">Oranges</h3>
-            <p class="text-green-600 font-medium">LKR 200/dozen</p>
-            <button onclick="addToCart('Oranges', 200, 'https://t4.ftcdn.net/jpg/02/20/02/41/360_F_220024121_lvQqND2X6YcINIlgNwTXcwC5Ws6no0RQ.jpg')" class="btn-primary mt-4 w-full">Add to Cart</button>
-          </div>
-        </div>
-        <div class="product-card bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <img src="https://img.freepik.com/premium-photo/fresh-raw-chicken-meat-parts-arrangement_89816-16254.jpg?semt=ais_hybrid&w=740" alt="Chicken" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold font-['Poppins'] text-gray-800">Chicken</h3>
-            <p class="text-green-600 font-medium">LKR 1200/kg</p>
-            <button onclick="addToCart('Chicken', 1200, 'https://img.freepik.com/premium-photo/fresh-raw-chicken-meat-parts-arrangement_89816-16254.jpg?semt=ais_hybrid&w=740')" class="btn-primary mt-4 w-full">Add to Cart</button>
-          </div>
-        </div>
-        <div class="product-card bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-          <img src="https://cdn.britannica.com/30/82530-050-79911DD4/Spinach-leaves-vitamins-source-person.jpg" alt="Fresh spinach" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-xl font-semibold font-['Poppins'] text-gray-800">Spinach</h3>
-            <p class="text-green-600 font-medium">LKR 100/500g</p>
-            <button onclick="addToCart('Spinach', 100, 'https://cdn.britannica.com/30/82530-050-79911DD4/Spinach-leaves-vitamins-source-person.jpg')" class="btn-primary mt-4 w-full">Add to Cart</button>
-          </div>
-        </div>
-      </div>
-      <p id="no-results" class="hidden text-center text-gray-600 mt-6 text-lg">No results found.</p>
-    </div>-->
+
   </section>
 
   <!-- Footer -->
-  <footer class="footer bg-green-700">
-    <div class="container mx-auto px-4 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<footer class="footer bg-green-800 text-white py-16">
+  <div class="container mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+      <!-- Company Info -->
+      <div class="col-span-1">
+        <a href="index.html" class="flex items-center text-3xl font-bold font-['Poppins'] mb-4">
+          <img src="assets/images/logo.png" alt="FreshMart Logo" class="w-12 h-12 mr-3">FreshMart
+        </a>
+        <p class="text-gray-300 text-sm leading-relaxed mb-6">
+          FreshMart delivers premium, fresh groceries across Sri Lanka with lightning-fast service, offering a wide selection of organic produce and essentials right to your doorstep.
+        </p>
+        <ul class="space-y-3 text-gray-300 text-sm">
+          <li class="flex items-center">
+            <i class="fas fa-phone-alt mr-2 text-green-400"></i>
+            <span>+94 112 345 678</span>
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-envelope mr-2 text-green-400"></i>
+            <span>support@freshmart.lk</span>
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-drone mr-2 text-green-400"></i>
+            <span>Drone Delivery Available</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-span-1">
+        <h3 class="text-2xl font-bold font-['Poppins'] mb-6 text-green-300">Quick Links</h3>
+        <ul class="space-y-3 text-gray-300 text-sm">
+          <li><a href="index.html" class="hover:text-green-400 transition-colors duration-300">Home</a></li>
+          <li><a href="pages/products.html" class="hover:text-green-400 transition-colors duration-300">Products</a></li>
+          <li><a href="pages/cart.html" class="hover:text-green-400 transition-colors duration-300">Cart</a></li>
+          <li><a href="pages/about.html" class="hover:text-green-400 transition-colors duration-300">About</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="col-span-1">
+        <h3 class="text-2xl font-bold font-['Poppins'] mb-6 text-green-300">Contact Us</h3>
         <div>
-          <a href="index.html" class="text-3xl font-bold text-white font-['Poppins'] flex items-center">
-        <img src="assets/images/logo.png" alt="FreshMart Logo" class="w-10 h-10 mr-2">FreshMart
-      </a>
-          <p class="text-gray-200">Fresh groceries delivered across Sri Lanka with fast service.</p>
-          <p class="text-gray-200 mt-2">📞 +94 112 345 678</p>
-          <p class="text-gray-200">✉️ support@freshmart.lk</p>
-          <p class="text-gray-200">🚁 Drone Delivery Available</p>
-        </div>
-        <div>
-          <h3 class="text-2xl font-bold font-['Poppins'] text-white mb-4">Quick Links</h3>
-          <ul class="space-y-2">
-            <li><a href="index.html" class="text-gray-200 hover:text-green-200 transition-colors duration-200">Home</a></li>
-            <li><a href="pages/products.html" class="text-gray-200 hover:text-green-200 transition-colors duration-200">Products</a></li>
-            <li><a href="pages/cart.html" class="text-gray-200 hover:text-green-200 transition-colors duration-200">Cart</a></li>
-            <li><a href="pages/about.html" class="text-gray-200 hover:text-green-200 transition-colors duration-200">About</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-2xl font-bold font-['Poppins'] text-white mb-4">Contact Us</h3>
-          <form>
-            <input type="text" placeholder="Name" class="w-full p-2 mb-2 rounded-md bg-gray-700 text-white">
-            <input type="email" placeholder="Email" class="w-full p-2 mb-2 rounded-md bg-gray-700 text-white">
-            <textarea placeholder="Message" rows="4" class="w-full p-2 mb-2 rounded-md bg-gray-700 text-white"></textarea>
-            <button type="submit" class="btn-primary w-full">Send Message</button>
-          </form>
+          <input type="text" placeholder="Name" class="w-full p-3 mb-4 rounded-lg bg-gray-700 text-white text-sm focus:ring-2 focus:ring-green-400 outline-none">
+          <input type="email" placeholder="Email" class="w-full p-3 mb-4 rounded-lg bg-gray-700 text-white text-sm focus:ring-2 focus:ring-green-400 outline-none">
+          <textarea placeholder="Message" rows="4" class="w-full p-3 mb-4 rounded-lg bg-gray-700 text-white text-sm focus:ring-2 focus:ring-green-400 outline-none"></textarea>
+          <button type="submit" class="w-full p-3 bg-green-600 text-white rounded-lg hover:bg-green-500 transition-colors duration-300 text-sm font-semibold">Send Message</button>
         </div>
       </div>
-      <div class="mt-8 pt-8 border-t border-gray-600 text-center">
-        <div class="flex justify-center space-x-4 mb-4">
-  <a href="#" class="text-gray-200 hover:text-green-200 transition-colors duration-200 hover:scale-110">
-    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/>
-    </svg>
-  </a>
-  <a href="#" class="text-gray-200 hover:text-green-200 transition-colors duration-200 hover:scale-110">
-    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.732-.666 1.584-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.396 0-.788-.023-1.175-.068 2.187 1.405 4.787 2.224 7.561 2.224 9.054 0 14-7.496 14-13.986 0-.21-.005-.42-.014-.63.961-.695 1.8-1.562 2.457-2.549z"/>
-    </svg>
-  </a>
-  <a href="#" class="text-gray-200 hover:text-green-200 transition-colors duration-200 hover:scale-110">
-    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path fill-rule="evenodd" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.618 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.012-3.584.07-4.849.149-3.252 1.699-4.771 4.919-4.919 1.265-.058 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-    </svg>
-  </a>
-</div>
-        <p class="text-gray-200">© 2025 FreshMart. All rights reserved. Last updated: June 23, 2025, 01:11 AM +0530</p>
+
+      <!-- Newsletter Signup -->
+      <div class="col-span-1">
+        <h3 class="text-2xl font-bold font-['Poppins'] mb-6 text-green-300">Newsletter</h3>
+        <p class="text-gray-300 text-sm mb-4">
+          Subscribe to our newsletter for exclusive offers and updates on fresh arrivals.
+        </p>
+        <div>
+          <input type="email" placeholder="Your Email" class="w-full p-3 mb-4 rounded-lg bg-gray-700 text-white text-sm focus:ring-2 focus:ring-green-400 outline-none">
+          <button type="submit" class="w-full p-3 bg-green-600 text-white rounded-lg hover:bg-green-500 transition-colors duration-300 text-sm font-semibold">Subscribe</button>
+        </div>
       </div>
     </div>
-  </footer>
+
+    <!-- Bottom Bar -->
+    <div class="mt-12 pt-8 border-t border-gray-600 text-center">
+      <div class="flex justify-center space-x-6 mb-6">
+        <a href="#" class="text-gray-300 hover:text-green-400 transition-colors duration-300 hover:scale-110">
+          <i class="fab fa-facebook-f w-6 h-6"></i>
+        </a>
+        <a href="#" class="text-gray-300 hover:text-green-400 transition-colors duration-300 hover:scale-110">
+          <i class="fab fa-twitter w-6 h-6"></i>
+        </a>
+        <a href="#" class="text-gray-300 hover:text-green-400 transition-colors duration-300 hover:scale-110">
+          <i class="fab fa-instagram w-6 h-6"></i>
+        </a>
+      </div>
+      <p class="text-gray-300 text-sm">© 2025 FreshMart. All rights reserved. Last updated: June 23, 2025, 01:11 AM +0530</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Font Awesome for Icons -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
 
   <script src="js/main.js"></script>
   <script src="js/cart.js"></script>
