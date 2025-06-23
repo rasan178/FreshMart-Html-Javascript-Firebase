@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  let cart = [];
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
   window.addToCart = function(product, price, image) {
     console.log(`Adding to cart: ${product}, ${price}, ${image}`);
@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       cart.push({ product, price, image, quantity: 1 });
     }
+    saveCart();
     updateCart();
     showNotification(`${product} added to cart!`);
   };
@@ -23,10 +24,15 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         cart.splice(itemIndex, 1);
       }
+      saveCart();
       updateCart();
       showNotification(`${product} removed from cart!`);
     }
   };
+
+  function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
 
   function updateCart() {
     console.log('Updating cart:', cart);
@@ -88,4 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('Notification elements not found!');
     }
   }
+
+  // Initialize cart on page load
+  updateCart();
 });
