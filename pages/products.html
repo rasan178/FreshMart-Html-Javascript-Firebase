@@ -122,19 +122,34 @@
     <section class="container mx-auto py-8">
         <h2 class="text-3xl font-bold font-['Poppins'] text-gray-800 mb-8 text-center">All Products</h2>
         <div class="flex justify-center mb-6">
-            <div class="relative w-full max-w-md mx-4">
-                <input type="text" id="search-bar" placeholder="Search products..." class="p-2 w-full border rounded-md focus:ring-green-500 focus:border-green-500">
-                <div id="search-suggestions" class="absolute w-full bg-white border rounded-md mt-1 hidden"></div>
-            </div>
-            <select id="category-filter" onchange="filterProducts(this.value)" class="p-2 border rounded-md focus:ring-green-500 focus:border-green-500">
-                <option>All Categories</option>
-                <option>Vegetables</option>
-                <option>Fruits</option>
-                <option>Grains</option>
-                <option>Meat</option>
-                <option>Bakery Items</option>
-            </select>
+    <div class="flex justify-center mb-6 gap-2">
+    <div class="relative w-full max-w-md">
+        <input type="text" id="search-bar" placeholder="Search products..." class="w-full">
+        <div id="search-suggestions" class="absolute w-full bg-white border rounded-md mt-1 hidden"></div>
+    </div>
+    <div class="relative w-full max-w-md">
+        <select id="category-filter" onchange="filterProducts(this.value)" class="hidden">
+            <option value="All Categories">All Categories</option>
+            <option value="Vegetables">Vegetables</option>
+            <option value="Fruits">Fruits</option>
+            <option value="Grains">Grains</option>
+            <option value="Meat">Meat</option>
+            <option value="Bakery Items">Bakery Items</option>
+        </select>
+        <div id="category-display" class="w-full cursor-pointer">
+            <span id="category-selected" class="w-full inline-block">All Categories</span>
         </div>
+        <div id="category-dropdown" class="hidden">
+            <div class="category-option" data-value="All Categories">All Categories</div>
+            <div class="category-option" data-value="Vegetables">Vegetables</div>
+            <div class="category-option" data-value="Fruits">Fruits</div>
+            <div class="category-option" data-value="Grains">Grains</div>
+            <div class="category-option" data-value="Meat">Meat</div>
+            <div class="category-option" data-value="Bakery Items">Bakery Items</div>
+        </div>
+    </div>
+</div>
+</div>
         <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             <!-- Shuffled Products -->
             <div class="product-card p-4 rounded-lg shadow-md" data-category="Bakery Items">
@@ -590,6 +605,7 @@
     <script src="../js/search.js"></script>
     <script src="../js/product.js"></script>
     <script src="../js/auth.js"></script>
+    <script src="../js/dropdown.js"></script>
     <script>
         // Ensure cart footer toggle works
         document.querySelector('#cart-footer-toggle').addEventListener('click', () => {
