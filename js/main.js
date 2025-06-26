@@ -93,15 +93,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // 🛑 Disable login form handler (handled by auth.js)
   if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      console.log('Login submitted:', {
-        email: document.getElementById('email').value,
-        password: document.getElementById('password').value
-      });
-      togglePopup(loginPopup, false);
-      loginForm.reset();
     });
   }
 
@@ -132,21 +127,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // 🛑 Disable signup form handler (handled by auth.js)
   if (signupForm) {
     signupForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const email = document.getElementById('signup-email').value;
-      const password = document.getElementById('signup-password').value;
-      const confirmPassword = document.getElementById('confirm-password').value;
-
-      if (password !== confirmPassword) {
-        alert('Passwords do not match!');
-        return;
-      }
-
-      console.log('Signup submitted:', { email, password });
-      togglePopup(signupPopup, false);
-      signupForm.reset();
     });
   }
 
@@ -185,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         notification.classList.remove('opacity-100', 'translate-y-0');
         notification.classList.add('opacity-0', 'translate-y-10');
-        setTimeout(() => notification.classList.add('hidden'), 300); // Match transition duration
+        setTimeout(() => notification.classList.add('hidden'), 300);
       }, 3000);
     }
   }
