@@ -10,6 +10,442 @@
   <link rel="stylesheet" href="../css/styles.css">
   <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" type="image/x-icon" href="../assets/images/logo.png">
+    <style>
+/* Enhanced Mobile-Responsive Cart & Checkout Styles */
+
+/* Popup Base Styles */
+#cart-popup, #checkout-popup {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  padding: 16px;
+}
+
+/* Inner popup containers with enhanced mobile responsiveness */
+#cart-inner, #checkout-inner {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 90vw;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(0.9);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+/* Desktop specific styles */
+@media (min-width: 768px) {
+  #cart-inner, #checkout-inner {
+    max-width: 640px;
+    padding: 24px;
+    max-height: 80vh;
+  }
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.btn-quantity {
+  background: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.btn-quantity:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.quantity-display {
+  min-width: 40px;
+  text-align: center;
+  font-weight: 600;
+  color: #1f2937;
+  padding: 0 8px;
+}
+
+.cart-item-total {
+  font-weight: 700;
+  font-size: 16px;
+  color: #1f2937;
+}
+
+.btn-trash {
+  background: #fee2e2;
+  color: #dc2626;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-trash:hover {
+  background: #fecaca;
+  transform: scale(1.05);
+}
+
+/* Desktop cart layout */
+@media (min-width: 768px) {
+  .cart-item {
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 16px;
+  }
+
+  .cart-item-header {
+    flex: 1;
+    gap: 16px;
+  }
+
+  .cart-item-actions {
+    flex: none;
+    width: auto;
+    gap: 16px;
+  }
+
+  .cart-item img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+
+
+/* Cart header styles */
+.cart-header {
+  display: none; /* Hide on mobile */
+  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  color: #374151;
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  .cart-header {
+    display: grid;
+    grid-template-columns: 50px 2fr 1fr 140px 1fr 50px;
+    gap: 16px;
+    align-items: center;
+  }
+}
+
+/* Empty cart styles */
+.empty-cart {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6b7280;
+}
+
+.empty-cart i {
+  font-size: 48px;
+  color: #d1d5db;
+  margin-bottom: 16px;
+}
+
+.empty-cart h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #374151;
+}
+
+
+
+#close-cart:hover, #close-checkout:hover {
+  background: #e5e7eb;
+  color: #374151;
+  transform: scale(1.1);
+}
+
+/* Enhanced Form styling for checkout with better margins */
+.checkout-form-group {
+  margin: 24px 16px 32px;
+  padding: 8px;
+  background: #f9fafb;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.checkout-form-group:first-child {
+  margin-top: 24px;
+}
+
+.checkout-form-group:last-child {
+  margin-bottom: 40px;
+}
+
+.checkout-form-group label {
+  display: block;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 10px;
+  margin-left: 4px;
+  font-size: 14px;
+}
+
+.checkout-form-group input,
+.checkout-form-group textarea {
+  width: 100%;
+  padding: 16px 20px;
+  margin: 12px 0 16px;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #1f2937;
+  background: #ffffff;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.checkout-form-group textarea::placeholder,
+.checkout-form-group input::placeholder {
+  color: #6b7280;
+  opacity: 1;
+}
+
+.checkout-form-group input:focus,
+.checkout-form-group textarea:focus {
+  outline: none;
+  border-color: #10b981;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+  margin-bottom: 20px;
+}
+
+/* Enhanced payment method styling with better margins */
+.payment-methods-container {
+  margin: 32px 16px;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  margin: 12px 0;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.payment-option:hover {
+  border-color: #10b981;
+  background: #f0fdf4;
+  margin: 16px 0;
+}
+
+.payment-option input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 16px;
+  accent-color: #10b981;
+}
+
+.payment-option label {
+  cursor: pointer;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Cart total styling with enhanced margins */
+.cart-total-section {
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 32px 16px;
+  border: 2px solid #bbf7d0;
+}
+
+.cart-total-section p {
+  font-size: 18px;
+  font-weight: 700;
+  color: #065f46;
+  text-align: right;
+  margin: 8px 0;
+}
+
+/* Responsive adjustments for form margins */
+@media (min-width: 768px) {
+  .checkout-form-group {
+    margin: 28px 24px 36px;
+    padding: 12px;
+  }
+
+  .payment-methods-container {
+    margin: 40px 24px;
+  }
+
+  .cart-total-section {
+    margin: 40px 24px;
+  }
+}
+
+/* Loading states */
+.btn-primary.loading {
+  position: relative;
+  color: transparent;
+}
+
+
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Smooth scroll for cart items */
+#cart-items, #checkout-items {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+#cart-items::-webkit-scrollbar, #checkout-items::-webkit-scrollbar {
+  width: 6px;
+}
+
+#cart-items::-webkit-scrollbar-track, #checkout-items::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+#cart-items::-webkit-scrollbar-thumb, #checkout-items::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+#cart-items::-webkit-scrollbar-thumb:hover, #checkout-items::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Floating cart icon enhancement */
+.cart-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+#cart-toggle {
+  position: relative;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+}
+
+#cart-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 35px rgba(16, 185, 129, 0.4);
+}
+
+#cart-toggle:active {
+  transform: scale(0.95);
+}
+
+#cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Modal animation states */
+.modal-show #cart-inner,
+.modal-show #checkout-inner {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Touch-friendly sizing for mobile */
+@media (max-width: 768px) {
+  .btn-quantity, .btn-trash {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .checkout-form-group input,
+  .checkout-form-group textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .cart-item {
+    border: 2px solid #000;
+  }
+  
+  .btn-primary {
+    border: 2px solid #000;
+  }
+
+  .checkout-form-group textarea {
+    border: 2px solid #000;
+    background: #fff;
+    color: #000;
+  }
+}
+</style>
 </head>
 <body class="bg-gray-100 font-sans">
     <!-- Navbar -->
@@ -28,39 +464,97 @@
     </div>
   </header>
 
-    <!-- Cart Notification -->
+   <!-- Cart and Checkout Component -->
+<div class="cart-icon fixed bottom-8 right-8 z-50">
+  <button id="cart-toggle" class="relative bg-green-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-green-500 transition-colors duration-300">
+    <i class="fas fa-shopping-cart text-xl"></i>
+    <span id="cart-badge" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">0</span>
+  </button>
+</div>
+
+<!-- 🛒 CART POPUP -->
+<div id="cart-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" style="display: none;">
+  <div id="cart-inner" class="bg-white rounded-lg p-4 max-w-xl w-full mx-4" style="transform: scale(0.95); opacity: 0; transition: all 0.3s ease;">
+    <div class="flex justify-between items-center mb-3">
+      <h2 class="text-xl font-bold font-['Poppins'] text-gray-800">Your Cart</h2>
+      <button id="close-cart" class="text-gray-600 hover:text-gray-800 text-lg">×</button>
+    </div>
+    <div class="cart-table">
+      <div class="cart-header grid grid-cols-[40px_2fr_1fr_100px_1fr_40px] gap-2 bg-gray-100 p-2 rounded-t-md font-semibold text-gray-700 text-sm">
+        <span></span>
+        <span>Product</span>
+        <span>Price</span>
+        <span>Quantity</span>
+        <span>Total</span>
+        <span></span>
+      </div>
+      <ul id="cart-items" class="max-h-64 overflow-y-auto"></ul>
+    </div>
+    <p class="text-md font-semibold mt-3 text-right">Total: <span id="cart-total">LKR 0</span></p>
+    <button id="proceed-to-checkout" class="btn-primary mt-3 w-full text-center block text-sm py-2">Proceed to Checkout</button>
+  </div>
+</div>
+
+<!-- 💳 CHECKOUT POPUP -->
+<div id="checkout-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" style="display: none;">
+  <div id="checkout-inner" class="bg-white rounded-lg p-4 max-w-xl w-full mx-4" style="transform: scale(0.95); opacity: 0; transition: all 0.3s ease;">
+    <div class="flex justify-between items-center mb-3">
+      <h2 class="text-xl font-bold font-['Poppins'] text-gray-800">Checkout</h2>
+      <button id="close-checkout" class="text-gray-600 hover:text-gray-800 text-lg">×</button>
+    </div>
+    <div class="cart-table mb-4">
+      <div class="cart-header grid grid-cols-[40px_2fr_1fr_100px_1fr] gap-2 bg-gray-100 p-2 rounded-t-md font-semibold text-gray-700 text-sm">
+        <span></span>
+        <span>Product</span>
+        <span>Price</span>
+        <span>Quantity</span>
+        <span>Total</span>
+      </div>
+      <ul id="checkout-items" class="max-h-64 overflow-y-auto"></ul>
+    </div>
+    <p class="text-md font-semibold mb-4 text-right">Total: <span id="checkout-total">LKR 0</span></p>
+    <form id="checkout-form" onsubmit="handleCheckout(event)">
+      <div class="mb-4">
+        <label for="full-name" class="block text-sm font-medium text-gray-700">Full Name</label>
+        <input type="text" id="full-name" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500" required>
+      </div>
+      <div class="mb-4">
+        <label for="delivery-address" class="block text-sm font-medium text-gray-700">Delivery Address</label>
+        <textarea id="delivery-address" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500" required></textarea>
+      </div>
+      <div class="mb-4">
+        <label for="phone-number" class="block text-sm font-medium text-gray-700">Phone Number</label>
+        <input type="tel" id="phone-number" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500" required>
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Payment Method</label>
+        <div class="payment-option">
+          <input type="radio" name="payment-method" value="cod" id="payment-cod" checked>
+          <label for="payment-cod">Cash on Delivery</label>
+        </div>
+        <div class="payment-option">
+          <input type="radio" name="payment-method" value="card" id="payment-card">
+          <label for="payment-card">Card Payment</label>
+        </div>
+      </div>
+      <div id="card-details" class="mb-4 hidden">
+        <label for="card-number" class="block text-sm font-medium text-gray-700">Card Number</label>
+        <input type="text" id="card-number" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500" placeholder="1234 5678 9012 3456">
+        <label for="card-expiry" class="block text-sm font-medium text-gray-700 mt-3">Card Expiry (MM/YY)</label>
+        <input type="text" id="card-expiry" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500" placeholder="MM/YY">
+        <label for="card-cvv" class="block text-sm font-medium text-gray-700 mt-3">CVV</label>
+        <input type="text" id="card-cvv" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500" placeholder="123">
+      </div>
+      <button type="submit" class="btn-primary w-full text-center block text-sm py-2">Place Order</button>
+    </form>
+  </div>
+</div>
+
+ <!-- Cart Notification -->
     <div id="cart-notification" class="fixed bottom-4 left-4 bg-green-500 text-white p-4 rounded-lg shadow-lg transform translate-y-10 opacity-0 transition-all duration-300 hidden">
         <p id="notification-message">Item added/removed from cart!</p>
     </div>
 
-   <!-- Cart Component -->
-  <div class="cart-icon fixed bottom-8 right-8 z-50">
-    <button id="cart-toggle" class="relative bg-green-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-green-500 transition-colors duration-300">
-      <i class="fas fa-shopping-cart text-xl"></i>
-      <span id="cart-badge" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">0</span>
-    </button>
-  </div>
-  <div id="cart-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-    <div class="bg-white rounded-lg p-4 max-w-xl w-full mx-4 transform scale-95 opacity-0 transition-all duration-300">
-      <div class="flex justify-between items-center mb-3">
-        <h2 class="text-xl font-bold font-['Poppins'] text-gray-800">Your Cart</h2>
-        <button id="close-cart" class="text-gray-600 hover:text-gray-800 text-lg">×</button>
-      </div>
-      <div class="cart-table">
-        <div class="cart-header grid grid-cols-[40px_2fr_1fr_100px_1fr_40px] gap-2 bg-gray-100 p-2 rounded-t-md font-semibold text-gray-700 text-sm">
-          <span></span>
-          <span>Product</span>
-          <span>Price</span>
-          <span>Quantity</span>
-          <span>Total</span>
-          <span></span>
-        </div>
-        <ul id="cart-items" class="max-h-64 overflow-y-auto"></ul>
-      </div>
-      <p class="text-md font-semibold mt-3 text-right">Total: <span id="cart-total">LKR 0</span></p>
-      <a href="pages/cart.html" class="btn-primary mt-3 w-full text-center block text-sm py-2">Proceed to Checkout</a>
-    </div>
-  </div>
 
     <!-- Login Pop-up -->
 <div id="login-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
@@ -515,6 +1009,8 @@
         </div>
         <p id="no-results" class="text-center text-gray-500 mt-4 hidden">No results found.</p>
     </section>
+
+    
 
  <!-- Footer -->
 <footer class="footer bg-green-800 text-white py-16">
