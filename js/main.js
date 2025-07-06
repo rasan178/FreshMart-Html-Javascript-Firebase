@@ -2,11 +2,47 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mobile Menu Toggle
   const navToggle = document.querySelector('.nav-toggle');
   const navMenu = document.querySelector('.nav-menu');
+  const categoryDisplay = document.querySelector('#category-display');
+  const categoryDropdown = document.querySelector('#category-dropdown');
 
   if (navToggle && navMenu) {
     navToggle.addEventListener('click', () => {
       navMenu.classList.toggle('hidden');
+      navMenu.classList.toggle('visible');
       navToggle.textContent = navMenu.classList.contains('hidden') ? '☰' : '×';
+      navToggle.classList.toggle('active');
+      // Close category dropdown when hamburger menu is toggled
+      if (categoryDropdown) {
+        categoryDropdown.classList.remove('visible');
+        categoryDisplay.classList.remove('active');
+      }
+    });
+  }
+
+  // Category Dropdown Toggle
+  if (categoryDisplay && categoryDropdown) {
+    categoryDisplay.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent event bubbling to nav-menu
+      categoryDropdown.classList.toggle('visible');
+      categoryDisplay.classList.toggle('active');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!categoryDropdown.contains(e.target) && !categoryDisplay.contains(e.target)) {
+        categoryDropdown.classList.remove('visible');
+        categoryDisplay.classList.remove('active');
+      }
+    });
+
+    // Handle category selection
+    const categoryOptions = categoryDropdown.querySelectorAll('.category-option');
+    categoryOptions.forEach((option) => {
+      option.addEventListener('click', () => {
+        categoryDisplay.textContent = option.textContent;
+        categoryDropdown.classList.remove('visible');
+        categoryDisplay.classList.remove('active');
+      });
     });
   }
 
@@ -201,6 +237,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (cartPopup && !cartPopup.classList.contains('hidden')) {
         togglePopup(cartPopup, false);
+      }
+      if (categoryDropdown && !categoryDropdown.classList.contains('hidden')) {
+        categoryDropdown.classList.remove('visible');
+        categoryDisplay.classList.remove('active');
       }
     }
   });
